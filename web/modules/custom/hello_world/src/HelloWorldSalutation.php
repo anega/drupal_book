@@ -28,6 +28,8 @@ class HelloWorldSalutation {
     if ((int) $time->format('G') >= 18) {
       return $this->t('Good evening world.');
     }
+
+    return 'Hello world.';
   }
 
 }
