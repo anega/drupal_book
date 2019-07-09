@@ -11,4 +11,5 @@ hello_world.greeting_form:
   defaults:
     _form: '\Drupal\hello_world\Form\SalutationConfigurationForm'
     _title: 'Salutation configuration'
-    _permissions: 'administer site configuration'
+  requirements:
+    _permission: 'administer site configuration'
