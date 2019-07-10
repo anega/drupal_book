@@ -94,7 +94,7 @@ class HelloWorldSalutationBlock extends BlockBase implements ContainerFactoryPlu
   public function blockForm($form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
 
-    $form = [
+    $form['enabled'] = [
       '#type'          => 'checkbox',
       '#title'         => t('Enabled'),
       '#description'   => t('Check this box if you want to enable this feature.'),
