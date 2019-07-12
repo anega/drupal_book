@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Custom HelloWorld module to practice Drupal 8.
+ */
+
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**

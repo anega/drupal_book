@@ -36,6 +36,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
   }
 
   /**
+   * Override bouldForm() method.
+   *
    * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
@@ -52,6 +54,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
   }
 
   /**
+   * Override validateForm() method.
+   *
    * {@inheritDoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
@@ -63,6 +67,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
   }
 
   /**
+   * Override submitForm() method.
+   *
    * {@inheritDoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {

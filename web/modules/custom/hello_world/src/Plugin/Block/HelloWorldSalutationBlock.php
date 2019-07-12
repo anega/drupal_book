@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\hello_world\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -29,15 +28,12 @@ class HelloWorldSalutationBlock extends BlockBase implements ContainerFactoryPlu
   /**
    * HelloWorldSalutationBlock constructor.
    *
-   * @param array $configuration
-   * @param       $plugin_id
-   * @param       $plugin_definition
+   * {@inheritDoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, $salutation) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->salutation = $salutation;
   }
-
 
   /**
    * Builds and returns the renderable array for this block plugin.
@@ -63,11 +59,11 @@ class HelloWorldSalutationBlock extends BlockBase implements ContainerFactoryPlu
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *   The container to pull out services used in the plugin.
-   * @param array                                                     $configuration
+   * @param array $configuration
    *   A configuration array containing information about the plugin instance.
-   * @param string                                                    $plugin_id
+   * @param string $plugin_id
    *   The plugin ID for the plugin instance.
-   * @param mixed                                                     $plugin_definition
+   * @param mixed $plugin_definition
    *   The plugin implementation definition.
    *
    * @return static
@@ -83,6 +79,8 @@ class HelloWorldSalutationBlock extends BlockBase implements ContainerFactoryPlu
   }
 
   /**
+   * Override defaultConfiguration() method.
+   *
    * {@inheritDoc}
    */
   public function defaultConfiguration() {
@@ -91,22 +89,31 @@ class HelloWorldSalutationBlock extends BlockBase implements ContainerFactoryPlu
     ];
   }
 
+  /**
+   * Override blockForm() method.
+   *
+   * {@inheritDoc}
+   */
   public function blockForm($form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
 
     $form['enabled'] = [
       '#type'          => 'checkbox',
-      '#title'         => t('Enabled'),
-      '#description'   => t('Check this box if you want to enable this feature.'),
+      '#title'         => $this->t('Enabled'),
+      '#description'   => $this->t('Check this box if you want to enable this feature.'),
       '#default_value' => $config['enabled'],
     ];
 
     return $form;
   }
 
+  /**
+   * Override blockSubmit() method.
+   *
+   * {@inheritDoc}
+   */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['enabled'] = $form_state->getValue('enabled');
   }
-
 
 }

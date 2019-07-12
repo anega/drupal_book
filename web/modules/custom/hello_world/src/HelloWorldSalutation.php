@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\hello_world;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -15,20 +14,26 @@ class HelloWorldSalutation {
   use StringTranslationTrait;
 
   /**
+   * ConfigFactoryInterface variable to contain salutation string.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
   /**
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface;
+   * EventDispatcherInterface to dispatch salutation event.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
   /**
    * HelloWorldSalutation constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface                  $config_factory
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   Holds config for the salutation string.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
+   *   Dispatch Salutation event.
    */
   public function __construct(ConfigFactoryInterface $config_factory, EventDispatcherInterface $eventDispatcher) {
     $this->configFactory = $config_factory;

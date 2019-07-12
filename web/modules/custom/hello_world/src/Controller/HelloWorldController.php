@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\hello_world\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
@@ -15,6 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class HelloWorldController extends ControllerBase {
 
   /**
+   * HelloWorldSalutation service instance.
+   *
    * @var \Drupal\hello_world\HelloWorldSalutation
    */
   protected $salutation;
@@ -23,6 +24,7 @@ class HelloWorldController extends ControllerBase {
    * HelloWorldController constructor.
    *
    * @param \Drupal\hello_world\HelloWorldSalutation $salutation
+   *   Instance of HelloWorldSalutation service.
    */
   public function __construct(HelloWorldSalutation $salutation) {
     $this->salutation = $salutation;
@@ -41,10 +43,12 @@ class HelloWorldController extends ControllerBase {
    * Hello World.
    *
    * @return array
+   *   Salutation output fot the UI.
    */
   public function helloWorld() {
     return [
       '#markup' => $this->salutation->getSalutation(),
     ];
   }
+
 }

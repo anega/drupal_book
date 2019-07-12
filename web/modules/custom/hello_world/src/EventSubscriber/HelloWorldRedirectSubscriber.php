@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Drupal\hello_world\EventSubscriber;
-
 
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Session\AccountProxyInterface;
@@ -13,19 +11,22 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Subscribes to the Kernel Request event and redirects to the homepage
- * when the user has the "non_grata" role.
+ * Subscribes to the Request, redirects to the "/" for the "non_grata" role.
  *
  * @package Drupal\hello_world\EventSubscriber
  */
 class HelloWorldRedirectSubscriber implements EventSubscriberInterface {
 
   /**
+   * Current user Entity.
+   *
    * @var \Drupal\Core\Session\AccountProxyInterface
    */
   protected $currentUser;
 
   /**
+   * Current route match to check if to perform redirect.
+   *
    * @var \Drupal\Core\Routing\CurrentRouteMatch
    */
   protected $currentRouteMatch;
@@ -34,13 +35,14 @@ class HelloWorldRedirectSubscriber implements EventSubscriberInterface {
    * HelloWorldRedirectSubscriber constructor.
    *
    * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
-   * @param \Drupal\Core\Routing\CurrentRouteMatch     $currentRouteMatch
+   *   Current user.
+   * @param \Drupal\Core\Routing\CurrentRouteMatch $currentRouteMatch
+   *   RouteMatch to check route name.
    */
   public function __construct(AccountProxyInterface $currentUser, CurrentRouteMatch $currentRouteMatch) {
     $this->currentUser = $currentUser;
     $this->currentRouteMatch = $currentRouteMatch;
   }
-
 
   /**
    * Returns an array of event names this subscriber wants to listen to.
@@ -58,7 +60,8 @@ class HelloWorldRedirectSubscriber implements EventSubscriberInterface {
    *  * ['eventName' => ['methodName', $priority]]
    *  * ['eventName' => [['methodName1', $priority], ['methodName2']]]
    *
-   * @return array The event names to listen to
+   * @return array
+   *   The event names to listen to.
    */
   public static function getSubscribedEvents() {
     $events[KernelEvents::REQUEST][] = ['onRequest', 0];
@@ -67,7 +70,9 @@ class HelloWorldRedirectSubscriber implements EventSubscriberInterface {
 
   /**
    * Handler for the kernel request event.
+   *
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
+   *   Request event.
    */
   public function onRequest(GetResponseEvent $event) {
     $route_name = $this->currentRouteMatch->getRouteName();
@@ -82,4 +87,5 @@ class HelloWorldRedirectSubscriber implements EventSubscriberInterface {
       $event->setResponse(new RedirectResponse($url->toString()));
     }
   }
+
 }

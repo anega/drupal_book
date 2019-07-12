@@ -19,16 +19,23 @@ class SalutationEvent extends Event {
   protected $message;
 
   /**
-   * @return mixed
+   * Getter for the SalutationEvent value.
+   *
+   * @return string
+   *   String of the SalutationEvent.
    */
   public function getValue() {
     return $this->message;
   }
 
   /**
+   * Setter for the SalutationEvent value.
+   *
    * @param mixed $message
+   *   String for the SalutationEvent.
    */
   public function setValue($message) {
     $this->message = $message;
   }
+
 }
