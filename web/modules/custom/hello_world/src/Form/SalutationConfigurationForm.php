@@ -14,7 +14,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SalutationConfigurationForm extends ConfigFormBase {
 
   /**
-   * @var \Drupal\Core\Logger\LoggerChannelInterface;
+   * Logger var.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
   protected $logger;
 
